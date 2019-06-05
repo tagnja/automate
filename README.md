@@ -1,0 +1,2 @@
+# automate
+My automatic scripts.
