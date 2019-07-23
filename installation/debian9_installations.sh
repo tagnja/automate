@@ -173,14 +173,6 @@ echo "Begin installation..."
 echo ""
 echo ""
 
-# Input what to install. 
-
-read -p "
-Selecting your want to install package:
-0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
-10. uninstall All 11. uninstall JDK 12. uninstall MySQL 13. uninstall Tomcat 14. uninstall Redis 15. niginx
-" install_code
-
 
 # Environment Check
 
@@ -231,46 +223,65 @@ fi
 install_path=/tools
 sudo mkdir -p $install_path
 
-for (( i=0; i<${#install_code}; i++)); do
-    case ${install_code:i:1} in
-    0) install_jdk
-        install_mysql 
-        install_tomcat 
-        install_redis 
-        ;;
-    1) install_jdk 
-        ;;
-    2) install_mysql 
-        ;;
-    3) install_tomcat 
-        ;;
-    4) install_redis 
-        ;;
-    5) install_nginx
-		;;
-	6) ;;
-	7) ;;
-	8) ;;
-	9) ;;
-	10) install uninstall_jdk
-	uninstall_mysql 
-	uninstall_tomcat 
-	uninstall_redis 
-        ;;
-    11) uninstall_jdk 
-        ;;
-    12) uninstall_mysql 
-        ;;
-    13) uninstall_tomcat 
-        ;;
-    14) uninstall_redis 
-        ;;
-	15) uninstall_nginx
-		;;
-    esac
-done
+read -p "
+Please select your operation:
+1. install 2. uninstall
+" operation_code
 
 
+if [ $operation_code=1]; then 
+
+	read -p "
+Selecting your want to install package:
+0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
+" install_code
+
+	for (( i=0; i<${#install_code}; i++)); do
+		case ${install_code:i:1} in
+		0) install_jdk
+			install_mysql 
+			install_tomcat 
+			install_redis 
+			;;
+		1) install_jdk 
+			;;
+		2) install_mysql 
+			;;
+		3) install_tomcat 
+			;;
+		4) install_redis 
+			;;
+		5) install_nginx
+			;;
+		esac
+	done
+fi
+if [ $operation_code=2]; then 
+	read -p "
+Selecting your want to install package:
+0. uninstall All 1. uninstall JDK 2. uninstall MySQL 3.uninstall Tomcat 4.uninstall Redis 5. uninstall nginx 
+" uninstall_code
+	for (( i=0; i<${#uninstall_code}; i++)); do
+		case ${uninstall_code:i:1} in
+		0) uninstall_jdk
+			uninstall_mysql 
+			uninstall_tomcat 
+			uninstall_redis
+			uninstall_nginx
+			;;
+		1) uninstall_jdk 
+			;;
+		2) uninstall_mysql 
+			;;
+		3) uninstall_tomcat 
+			;;
+		4) uninstall_redis 
+			;;
+		5) uninstall_nginx
+			;;
+		esac
+	done
+fi
 
 
 echo ""
