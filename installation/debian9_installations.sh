@@ -1,23 +1,25 @@
 #!/bin/bash
 
+
+# redis installation
 function install_redis
 {
 	echo ""
 	echo ""
-	echo "install redis begin<<<<<<<<<<<<<<<<<<<<"
+	echo "Install redis begin<<<<<<<<<<<<<<<<<<<<"
 	echo ""
 	echo ""
 	
 	# download
 	echo ""	
-	echo "download..."
+	echo "Download..."
 	echo ""
 	wget http://download.redis.io/releases/redis-5.0.5.tar.gz
 
 	
 	# unzip	
 	echo ""
-	echo "unzip..."
+	echo "Unzip..."
 	echo ""
 	install_path=/tools
 	sudo mkdir -p $install_path
@@ -26,7 +28,7 @@ function install_redis
 	
 	# make
 	echo ""
-	echo "make..."
+	echo "Make..."
 	echo ""
 	cd $install_path/redis-5.0.5
 	sudo make
@@ -45,27 +47,27 @@ function install_redis
 # main
 
 echo "************************************************************"
-echo "begin installation..."
+echo "Begin installation..."
 echo ""
 echo ""
 
 if ! [ -x "$(command -v sudo)" ]; then
     echo ""
-    echo "install sudo<<<<<<<<<<<<<<<<<<<<"
+    echo "Install sudo<<<<<<<<<<<<<<<<<<<<"
     echo ""
     apt-get install sudo -y
     echo ""
-    echo "install sudo is successful! >>>>>>>>>>>>>>>>>>>>>>"
+    echo "Install sudo is successful! >>>>>>>>>>>>>>>>>>>>>>"
     echo ""
 fi
 
 if ! [ -x "$(command -v make)" ]; then
     echo ""
-    echo "install make<<<<<<<<<<<<<<<<<<<<"
+    echo "Install make<<<<<<<<<<<<<<<<<<<<"
     echo ""
     sudo apt-get install build-essential -y
     echo ""
-    echo "install make is successful! >>>>>>>>>>>>>>>>>>>>>>"
+    echo "Install make is successful! >>>>>>>>>>>>>>>>>>>>>>"
     echo ""
 fi
 
