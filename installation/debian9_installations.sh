@@ -6,21 +6,88 @@
 
 function install_jdk
 {
-    echo ""	
+	echo ""
+	echo ""
+	echo "Install jdk begin<<<<<<<<<<<<<<<<<<<<"
+	echo ""
+	echo ""	
+	
+	if [ -x "$(command -v java)" ]; then
+		echo ""
+		echo "jdk is exist!"
+		echo ""
+	else
+	
+		if ! [[ -n $(ls | grep jdk*.tar.gz) ]]; then
+			echo "[ERROR] The jdk-xxx.tar.gz file is not exist in current path! Please upload jdk installation package."
+		else			
+			archive_filename=$(ls | grep jdk*.tar.gz | head -n 1)
+			sudo tar xzvf $archive_filename -C $install_path
+			
+			# configuring environment
+			jdk_name=$(tar tf $archive_filename | head -n 1)
+			jdk_name=${jdk_name/\/*/}
+
+			JAVA_HOME=$install_path/$jdk_name
+			echo "java home is $JAVA_HOME"
+			if [ -d $JAVA_HOME/bin ]; then
+				sed -i "/\b\(JAVA_HOME\)\b/d" ~/.profile
+echo "
+export JAVA_HOME=$JAVA_HOME
+export PATH=\$PATH:\$JAVA_HOME/bin
+">>~/.profile ;
+				echo ""
+				echo "Success! You need logout or restart. Your JAVA_HOME is $JAVA_HOME"
+        		echo ""
+			else
+				echo ""
+				echo "Fail! $JAVA_HOME/bin is invalid directory";
+				echo ""
+			fi
+		fi
+	fi
+	
+}
+
+function uninstall_jdk
+{
+	sudo rm -rf /tools/jdk*
+	sed -i "/\b\(JAVA_HOME\)\b/d" ~/.profile
+	echo ""
+	echo "Uninstall jdk is successful!"
+	echo ""
 }
 
 # MySQL installation
 
 function install_mysql
 {
-   echo ""
+	echo ""
+	echo "Install mysql is successful!"
+	echo ""
+}
+
+function uninstall_mysql
+{
+	echo ""
+	echo "Uninstall mysql is successful!"
+	echo ""
 }
 
 # Tomcat installation
 
 function install_tomcat
 {
-   echo ""
+	echo ""
+	echo "Install tomcat is successful!"
+	echo ""
+}
+
+function uninstall_tomcat
+{
+	echo ""
+	echo "Uninstall tomcat is successful!"
+	echo ""
 }
 
 # redis installation
@@ -72,9 +139,16 @@ function install_redis
 		echo "";
 		echo "";
 	fi
-	
-	
 }
+
+function uninstall_redis
+{
+	sudo rm -rf /tools/redis*
+	echo ""
+	echo "Uninstall redis is successful!"
+	echo ""
+}
+
 
 # main
 
@@ -87,7 +161,8 @@ echo ""
 
 read -p "
 Selecting your want to install package:
-1.JDK 2.MySQL 3.Tomcat 4.Redis 0.ALL
+0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 
+5. uninstall All 6. uninstall JDK 7. uninstall MySQL 8. uninstall Tomcat 9. uninstall Redis
 " install_code
 
 
@@ -145,8 +220,23 @@ for (( i=0; i<${#install_code}; i++)); do
         ;;
     4) install_redis 
         ;;
+    5) uninstall_jdk
+	uninstall_mysql 
+	uninstall_tomcat 
+	uninstall_redis 
+        ;;
+    6) uninstall_jdk 
+        ;;
+    7) uninstall_mysql 
+        ;;
+    8) uninstall_tomcat 
+        ;;
+    9) uninstall_redis 
+        ;;
     esac
 done
+
+
 
 
 echo ""
