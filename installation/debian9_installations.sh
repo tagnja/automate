@@ -230,12 +230,10 @@ Please select your operation:
 
 
 if [ $operation_code=1 ]; then 
-
 	read -p "
 Selecting your want to install package:
 0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
 " install_code
-
 	for (( i=0; i<${#install_code}; i++)); do
 		case ${install_code:i:1} in
 		0) install_jdk
@@ -255,10 +253,9 @@ Selecting your want to install package:
 			;;
 		esac
 	done
-fi
-if [ $operation_code=2 ]; then 
+else
 	read -p "
-Selecting your want to install package:
+Selecting your want to uninstall package:
 0. uninstall All 1. uninstall JDK 2. uninstall MySQL 3.uninstall Tomcat 4.uninstall Redis 5. uninstall nginx 
 " uninstall_code
 	for (( i=0; i<${#uninstall_code}; i++)); do
