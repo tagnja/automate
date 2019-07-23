@@ -241,7 +241,7 @@ done
 
 echo ""
 echo ""
-echo "All installation process is over!"
+echo "All tasks are over!"
 echo "************************************************************"
 echo ""
 echo ""
