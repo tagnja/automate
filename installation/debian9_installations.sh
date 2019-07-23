@@ -32,7 +32,7 @@ function install_redis
 	# result
 	echo ""
 	echo ""
-	echo "Install redis is successful!...( Start redis using $ cd /tools/redis-5.0.5; ./src/redis-server; )"
+	echo "Install redis is successful! ( Start redis using $ cd /tools/redis-5.0.5; ./src/redis-server; )"
 	echo "**************************"
 
 
