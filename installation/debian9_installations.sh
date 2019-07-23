@@ -184,8 +184,8 @@ function install_nginx
 	# Downloading the Sources
 	wget https://nginx.org/download/nginx-1.14.2.tar.gz
 	tar zxf nginx-1.14.2.tar.gz -C $install_path
-	cd $install_path/nginx-1.14.2
-	./configure
+	#cd $install_path/nginx-1.14.2
+	#./configure
 	#sudo make
 	#sudo make install
 	#sudo nginx
@@ -261,7 +261,7 @@ Please select your operation:
 " operation_code
 
 
-if [ $operation_code=1 ]; then 
+if [ $operation_code -eq 1 ]; then 
 	read -p "
 Selecting your want to install package:
 0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
