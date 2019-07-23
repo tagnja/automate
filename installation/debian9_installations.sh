@@ -157,6 +157,38 @@ function install_nginx
 	echo ""
 	echo ""
 	
+	# PCRE – Supports regular expressions. Required by the NGINX Core and Rewrite modules.
+	wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.42.tar.gz
+	tar -zxf pcre-8.42.tar.gz -C $install_path
+	cd $install_path/pcre-8.42
+	./configure
+	sudo make
+	sudo make install
+	
+	# zlib – Supports header compression. Required by the NGINX Gzip module.
+	wget http://zlib.net/zlib-1.2.11.tar.gz
+	tar -zxf zlib-1.2.11.tar.gz -C $install_path
+	cd $install_path/zlib-1.2.11
+	./configure
+	sudo make
+	sudo make install
+	
+	# OpenSSL – Supports the HTTPS protocol. Required by the NGINX SSL module and others.
+	wget http://www.openssl.org/source/openssl-1.1.1b.tar.gz
+	tar -zxf openssl-1.1.1b.tar.gz -C $install_path
+	cd $install_path/openssl-1.1.1b
+	./Configure darwin64-x86_64-cc --prefix=/usr
+	sudo make
+	sudo make install
+	
+	# Downloading the Sources
+	wget https://nginx.org/download/nginx-1.14.2.tar.gz
+	tar zxf nginx-1.14.2.tar.gz -C $install_path
+	cd $install_path/nginx-1.14.2
+	./configure
+	#sudo make
+	#sudo make install
+	#sudo nginx
 }
 
 function uninstall_nginx
