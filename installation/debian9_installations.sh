@@ -149,6 +149,22 @@ function uninstall_redis
 	echo ""
 }
 
+function install_nginx
+{
+	echo ""
+	echo ""
+	echo "Install nginx begin<<<<<<<<<<<<<<<<<<<<"
+	echo ""
+	echo ""
+	
+}
+
+function uninstall_nginx
+{
+	echo ""
+	echo "Uninstall nginx is successful!"
+	echo ""
+}
 
 # main
 
@@ -161,8 +177,8 @@ echo ""
 
 read -p "
 Selecting your want to install package:
-0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 
-5. uninstall All 6. uninstall JDK 7. uninstall MySQL 8. uninstall Tomcat 9. uninstall Redis
+0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
+10. uninstall All 11. uninstall JDK 12. uninstall MySQL 13. uninstall Tomcat 14. uninstall Redis 15. niginx
 " install_code
 
 
@@ -230,19 +246,27 @@ for (( i=0; i<${#install_code}; i++)); do
         ;;
     4) install_redis 
         ;;
-    5) uninstall_jdk
+    5) install_nginx
+		;;
+	6) ;;
+	7) ;;
+	8) ;;
+	9) ;;
+	10) install uninstall_jdk
 	uninstall_mysql 
 	uninstall_tomcat 
 	uninstall_redis 
         ;;
-    6) uninstall_jdk 
+    11) uninstall_jdk 
         ;;
-    7) uninstall_mysql 
+    12) uninstall_mysql 
         ;;
-    8) uninstall_tomcat 
+    13) uninstall_tomcat 
         ;;
-    9) uninstall_redis 
+    14) uninstall_redis 
         ;;
+	15) uninstall_nginx
+		;;
     esac
 done
 
