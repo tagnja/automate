@@ -39,6 +39,11 @@ function install_redis
 		echo ""
 	else
 		# download
+		if [[ -n $(ls | grep redis) ]]; then
+			echo "Move old package..."
+			sudo mkdir -p oldPackage
+			sudo mv redis* oldPackage/
+		fi
 		echo ""	
 		echo "Download..."
 		echo ""
