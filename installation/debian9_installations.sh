@@ -229,7 +229,7 @@ Please select your operation:
 " operation_code
 
 
-if [ $operation_code=1]; then 
+if [ $operation_code=1 ]; then 
 
 	read -p "
 Selecting your want to install package:
@@ -256,7 +256,7 @@ Selecting your want to install package:
 		esac
 	done
 fi
-if [ $operation_code=2]; then 
+if [ $operation_code=2 ]; then 
 	read -p "
 Selecting your want to install package:
 0. uninstall All 1. uninstall JDK 2. uninstall MySQL 3.uninstall Tomcat 4.uninstall Redis 5. uninstall nginx 
