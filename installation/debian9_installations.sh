@@ -199,6 +199,16 @@ if ! [ -x "$(command -v wget)" ]; then
     echo ""
 fi
 
+if ! [ -x "$(command -v curl)" ]; then
+    echo ""
+    echo "Install curl<<<<<<<<<<<<<<<<<<<<"
+    echo ""
+    sudo apt-get install curl -y
+    echo ""
+    echo "Install curl is successful! >>>>>>>>>>>>>>>>>>>>>>"
+    echo ""
+fi
+
 
 # begin installation
 
