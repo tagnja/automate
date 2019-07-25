@@ -12,6 +12,7 @@
 - Loop
 - Variable
 - Function
+- Package Management
 
 
 
@@ -314,5 +315,24 @@ All function parameters or arguments can be accessed via $1, $2, $3,..., $N.
 $0 always point to the shell script name.
 $* or $@ holds all parameters or arguments passed to the function.
 $# holds the number of positional parameters passed to the function.
+```
+
+
+
+### Package Management
+
+Is package installed by apt-get install
+
+```shell
+$ dpkg -l mysql-server &> /dev/null && echo "mysql-server is installed"
+```
+
+```shell
+function package_exists() {
+    return dpkg -l "$1" &> /dev/null
+}
+if ! package_exists mysql-server ; then
+    echo ”Please install mysql-server!"
+fi
 ```
 
