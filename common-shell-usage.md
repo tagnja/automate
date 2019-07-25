@@ -163,7 +163,13 @@ Selecting your want to install package:
 Output to terminal
 
 ```shell
-echo "hello world!"
+echo "Hello World!"
+```
+
+Output newline
+
+```shell
+echo -e "Hello\nWorld\n\n"
 ```
 
 
