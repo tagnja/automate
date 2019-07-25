@@ -31,11 +31,11 @@ function install_jdk
 			JAVA_HOME=$install_path/$jdk_name
 			echo "java home is $JAVA_HOME"
 			if [ -d $JAVA_HOME/bin ]; then
-				sed -i "/\b\(JAVA_HOME\)\b/d" ~/.profile
+				sed -i "/\b\(JAVA_HOME\)\b/d" /etc/profile
 echo "
 export JAVA_HOME=$JAVA_HOME
 export PATH=\$PATH:\$JAVA_HOME/bin
-">>~/.profile ;
+"| sudo tee -a /etc/profile ;
 				echo ""
 				echo "Success! You need logout or restart. Your JAVA_HOME is $JAVA_HOME"
         		echo ""

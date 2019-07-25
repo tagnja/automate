@@ -108,6 +108,15 @@ fi
 
 ### Text Line
 
+find String from a file
+
+```shell
+$ grep 'word' filename
+$ grep 'word' file1 file2 file3
+$ grep 'string1 string2'  filename
+$ cat otherfile | grep 'something'
+```
+
 Rewrite text of a file
 
 ```shell
@@ -118,12 +127,34 @@ deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
 
 Append text lines into a file
 
+`cat`, `>>`
+
+```shell
+cat <<EOT >> greetings.txt
+line 1
+line 2
+EOT # EOT is just a random string.
+```
+
+`tee`
+
+```shell
+tee -a filepath << END
+Host localhost
+  ForwardAgent yes
+END
+```
+
+`echo `, `>>`
+
 ```shell
 echo "
 export JAVA_HOME=$JAVA_HOME
 export PATH=\$PATH:\$JAVA_HOME/bin
 ">>~/.profile ;
 ```
+
+`echo`, `tee`
 
 ```shell
 echo "
