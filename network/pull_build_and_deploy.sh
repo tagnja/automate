@@ -18,6 +18,7 @@ if ! [[ -n ls $proj_name ]]
 fi
 
 cd $proj_name
+git pull
 mvn package spring-boot:repackage
 
 if [[ -n $(pgrep -f java) ]]
