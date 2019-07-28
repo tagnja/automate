@@ -376,7 +376,7 @@ port=$(sudo lsof -i -P | grep -i LISTEN | grep <pid>)
 Kill process by PID
 
 ```shell
-sudo kill -9
+sudo kill -9 PID
 ```
 
 
