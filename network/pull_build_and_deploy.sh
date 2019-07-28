@@ -13,7 +13,7 @@ if ! [ -x "$(command -v mvn)" ]; then
 fi
 
 proj_name=hot-crawler
-if ! [[ -n ls $proj_name ]]
+if ! [[ -n $(ls $proj_name) ]]
 	git clone https://github.com/tagnja/hot-crawler.git
 fi
 
