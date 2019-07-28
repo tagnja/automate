@@ -18,7 +18,9 @@ fi
 
 
 if ! [[ -n $(ls $proj_name) ]]; then
+	echo -e "\n\nGit clone...\n\n"
 	git clone https://github.com/$github_user/$proj_name.git
+	echo -e "\n\nGit clone is successful!\n\n"
 fi
 
 cd $proj_name
