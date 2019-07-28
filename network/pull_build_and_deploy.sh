@@ -33,11 +33,10 @@ echo -e "\n\nBuild project is successful!\n\n"
 
 if [[ -n $(pgrep -f java) ]]; then
 	pid=$(pgrep -f java | head -n 1)
-	echo -e "\n\nTo kill pid $pid...\n\n"
+	echo -e "\n\nTo kill pid $pid...\n"
 	sudo kill -9 $pid
-	echo -e "\n\nKill pid $pid is successful!\n\n"
+	echo -e "Kill pid $pid is successful!\n\n"
 fi
 
 echo -e "\n\nStart project...\n\n"
 java -jar ./target/$target_name-1.0-SNAPSHOT.jar &
-echo -e "\n\nStart project is successful!\n\n"
