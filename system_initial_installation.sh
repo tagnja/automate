@@ -52,12 +52,14 @@ fi
 sudo $package_manager update && $package_manager upgrade -y && $package_manager autoremove && $package_manager autoclean
 
 # system basic
-echo "\n\n system utils installation ... \n\n"
+echo -e "\n\n system utils installation ... \n\n"
 if [ "$package_manager" = "yum" ]; then 
 	sudo yum -y install yum-utils
 	sudo yum -y groupinstall development
+else
+	sudo tasksel --task-package standard 
 fi
-echo "\n\n system utils installation finished ! \n\n"
+echo -e "\n\n system utils installation finished ! \n\n"
 
 
 # install make
