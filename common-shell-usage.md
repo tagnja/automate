@@ -13,6 +13,8 @@
 - Variable
 - Function
 - Package Management
+- Process
+- Network
 
 
 
@@ -321,6 +323,18 @@ $# holds the number of positional parameters passed to the function.
 
 ### Package Management
 
+Check package manager
+
+```shell
+if [ -x "$(command -v yum)" ]; then
+	package_manager=yum
+else
+	package_manager=apt-get
+fi
+```
+
+
+
 Is package installed by apt-get install
 
 ```shell
@@ -334,5 +348,55 @@ function package_exists() {
 if ! package_exists mysql-server ; then
     echo ”Please install mysql-server!"
 fi
+```
+
+```shell
+if [[ -n "$(which redis-server)" ]]; then
+	echo "redis is installed"
+fi
+```
+
+
+
+### Process
+
+get process PID by name
+
+```shell
+pgrep -f <process_name>
+pid=$(pgrep -f <process_name> | head -n 1)
+```
+
+Get process listening port number by PID
+
+```shell
+port=$(sudo lsof -i -P | grep -i LISTEN | grep <pid>)
+```
+
+Kill process by PID
+
+```shell
+sudo kill -9
+```
+
+
+
+### Network
+
+Checking ping is reach
+
+```shell
+ping -c 1 -w 5 google.com
+if [ $? -eq 0 ]; then 
+	echo "ok"
+else
+	echo "fail"
+fi
+```
+
+Get server host IP address
+
+```shell
+server_ip=$(curl http://ifconfig.me/ip)
 ```
 
