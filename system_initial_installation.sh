@@ -49,7 +49,10 @@ if ! [ -x "$(command -v sudo)" ]; then
 fi
 
 # apt update
+echo -e "\n\n apt update... \n\n"
 sudo $package_manager update && $package_manager upgrade -y && $package_manager autoremove && $package_manager autoclean
+echo -e "\n\n apt update is finished ! \n\n"
+
 
 # system basic
 echo -e "\n\n system utils installation ... \n\n"
