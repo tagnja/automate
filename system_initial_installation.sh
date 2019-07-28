@@ -81,7 +81,13 @@ if ! [ -x "$(command -v python)" ]; then
 		sudo yum -y install python36u python36u-pip 
 		sudo yum -y python36u-devel
 	else
-		sudo apt-get install python3.6
+		# Installing Python 3.6.4 from the Debian testing repository
+		debian_test_repo="deb http://ftp.de.debian.org/debian testing main" 
+		if ! [[ -n $(cat /etc/apt/sources.list | grep "$debian_test_repo") ]]; then
+			sudo echo "$debian_test_repo" >> /etc/apt/sources.list
+		fi
+		sudo apt-get update
+		sudo apt-get install python3.6 -y
 	fi
 	python --version
 	echo -e "\n\n Install python 3.6 is successful ! \n\n"
