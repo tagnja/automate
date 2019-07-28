@@ -48,7 +48,7 @@ fi
 
 
 # install redis
-if ! [ -x "$(service --status-all | grep -Fq redis)" ]; then
+if ! [ -x "$(which redis-server)" ]; then
 	echo -e "\n\n Install Redis... \n\n"
 	sudo $package_manager install redis -y
 	echo -e "\n\n Redis installation is successful! \n\n"
