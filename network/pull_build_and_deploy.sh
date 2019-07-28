@@ -24,9 +24,11 @@ if [ -x "$(command -v yum)" ]; then
 fi
 echo -e "\n\n Package manager is $package_manager. \n\n"
 
+
 # check server location
 echo -e "\n\n Check server location... \n\n"
-if [ -x "$(ping -c 1 google.com &> /dev/null)" ]; then 
+ping -c 1 -w 5 google.com
+if [ $? -eq 0 ]; then 
 	server_location=abroad
 fi
 echo -e "\n\n Server location is $server_location. \n\n"
