@@ -58,6 +58,8 @@ else
 		service redis stop
 		service redis start
 		echo -e "\n\n Start Redis is successful! \n\n"
+	else
+		echo -e "\n\n Redis already started. \n\n"
 	fi
 fi
 
