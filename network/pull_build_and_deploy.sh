@@ -4,15 +4,22 @@ github_user=tagnja
 proj_name=hot-crawler
 target_name=hotcrawler
 
+if [ -x "$(command -v apt-get)" ]; then
+	package_manager=apt-get
+else
+	package_manager=yum
+fi
+echo -e "\n\n package manager is $package_manager.\n\n"
+
 if ! [ -x "$(command -v git)" ]; then
 	echo -e "\n\nInstall git...\n\n"
-	sudo apt-get install git -y
+	sudo $package_manager install git -y
 	echo -e "\n\nGit installation is successful!\n\n"
 fi
 
 if ! [ -x "$(command -v mvn)" ]; then
 	echo -e "\n\nInstall maven...\n\n"
-	sudo apt-get install maven -y
+	sudo $package_manager install maven -y
 	echo -e "\n\nMaven installation is successful!\n\n"
 fi
 
