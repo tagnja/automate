@@ -3,6 +3,7 @@
 server_location=inland
 package_manager=apt-get
 
+
 # check package manager
 echo -e "\n\n Check package manager... \n\n"
 if [ -x "$(command -v yum)" ]; then
@@ -24,8 +25,20 @@ echo -e "\n\n Server location is $server_location. \n\n"
 
 
 # update sources.list
-if [ "$server_location" = "inland" ]; then 
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+source_path=/etc/apt/sources.list
+if [ "$server_location" = "inland" ]; then
+	if [ -f $source_path ]; then
+		if ! [[ -n $(sudo grep "http://mirrors.aliyun.com/ubuntu/" $source_path) ]]; then 
+			bak_path=/etc/apt/sources.list.bak
+			i=1
+			while true; do
+				if ! [ -f $bak_path ]; then
+					break
+				fi
+				bak_path="${source_path}.bak.$i"
+				i=$[$i + 1]
+			done
+			sudo cp $source_path $bak_path
 echo "
 deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
@@ -38,8 +51,18 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted unive
 deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
 "| sudo tee /etc/apt/sources.list  # add -a for append (>>) ;
-echo "\n\n sources.list update to aliyun. \n\n"
+			echo -e "\n\n sources.list update to aliyun. \n\n"
+		else
+			echo -e "\n\n Already is aliyun sources ! \n\n"
+		fi
+	else
+		echo -e "\n\n Not found /etc/apt/sources.list ! \n\n"
+	fi
+else
+	echo -e "\n\n server is in abroad, not need change to aliyun sources! \n\n"
 fi
+
+
 
 # install sudo
 if ! [ -x "$(command -v sudo)" ]; then
@@ -94,7 +117,7 @@ if ! [ -x "$(command -v python)" ]; then
 fi
 
 # install packages
-declare -a arr=("wget" "curl" "pgrep" "lsof" "git" "vim")
+declare -a arr=("wget" "curl" "grep" "pgrep" "lsof" "git" "vim")
 
 for i in "${arr[@]}"; do
 	if ! [ -x "$(command -v $i)" ]; then
