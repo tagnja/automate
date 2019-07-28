@@ -53,10 +53,12 @@ if ! [ -x "$(which redis-server)" ]; then
 	sudo $package_manager install redis -y
 	echo -e "\n\n Redis installation is successful! \n\n"
 else
-	echo -e "\n\n Start Redis... \n\n"
-	service redis stop
-	service redis start
-	echo -e "\n\n Start Redis is successful! \n\n"
+	if ! [[ -n $(pgrep -f redis) ]]; then
+		echo -e "\n\n Start Redis... \n\n"
+		service redis stop
+		service redis start
+		echo -e "\n\n Start Redis is successful! \n\n"
+	fi
 fi
 
 
