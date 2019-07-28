@@ -1,5 +1,9 @@
 #!/bin/bash
 
+github_user=tagnja
+proj_name=hot-crawler
+target_name=hotcrawler
+
 if ! [ -x "$(command -v git)" ]; then
 	echo -e "\n\ninstall git...\n\n"
 	sudo apt-get install git -y
@@ -12,9 +16,9 @@ if ! [ -x "$(command -v mvn)" ]; then
 	echo -e "\n\nmaven installation is successful!\n\n"
 fi
 
-proj_name=hot-crawler
+
 if ! [[ -n $(ls $proj_name) ]]
-	git clone https://github.com/tagnja/hot-crawler.git
+	git clone https://github.com/$github_user/$proj_name.git
 fi
 
 cd $proj_name
@@ -28,4 +32,4 @@ if [[ -n $(pgrep -f java) ]]
 	echo -e "\n\nkill pid $pid is successful!\n\n"
 fi
 
-java -jar ./target/hotcrawler-1.0-SNAPSHOT.jar &
+java -jar ./target/$target_name-1.0-SNAPSHOT.jar &
