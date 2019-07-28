@@ -32,4 +32,6 @@ if [[ -n $(pgrep -f java) ]]; then
 	echo -e "\n\nkill pid $pid is successful!\n\n"
 fi
 
+echo -e "\n\nstart project..\n\n"
 java -jar ./target/$target_name-1.0-SNAPSHOT.jar &
+
