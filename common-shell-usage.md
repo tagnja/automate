@@ -12,6 +12,8 @@
 - Loop
 - Variable
 - Arrays
+- Integer
+- String
 - Function
 - Package Management
 - Process
@@ -261,6 +263,17 @@ for (( i=0; i<${#uninstall_code}; i++)); do
 done
 ```
 
+```shell
+i=1
+while true; do
+	echo "$i"
+	if [ $i -eq 10 ]; then
+		break
+	fi
+	i=$[$i + 1]
+done
+```
+
 
 
 ### Variable
@@ -276,6 +289,12 @@ Using variable
 ```shell
 $install_path
 ```
+
+```shell
+${install_path}
+```
+
+
 
 ### Arrays
 
@@ -299,6 +318,51 @@ done
 for (( i=1; i<${arraylength}+1; i++ )); do
   echo $i " / " ${arraylength} " : " ${arr[$i-1]}
 done
+```
+
+### Integer
+
+arithmetic
+
+```shell
+sum=$[$sum + $score]
+num=$[$num + 1]
+average=$[$sum / $num]
+```
+
+loop
+
+```shell
+i=0
+while true; do
+	if [ $i -eq 10 ]; then
+		break
+	fi
+	i=$[$i + 1]
+done
+```
+
+
+
+### String
+
+String concatenate
+
+```shell
+foo="hello"
+foo="$foo world"
+foo="${foo}haha"
+```
+
+String compare
+
+```shell
+foo="hello"
+if [ $foo = "hello" ]; then
+	echo "equals"
+else
+	echo "not equals"
+fi
 ```
 
 
