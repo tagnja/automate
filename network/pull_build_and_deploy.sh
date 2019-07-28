@@ -6,6 +6,16 @@ target_name=hotcrawler
 package_manager=apt-get
 server_location=inland
 server_ip=$(curl http://ifconfig.me/ip)
+proj_start_time=20
+process_name=java
+
+function showProcess
+{
+	pid=$(pgrep -f $1 | head -n 1)
+	port=$(sudo lsof -i -P | grep -i LISTEN | grep $pid)
+	echo -e "\n\nYour application run at $server_ip and listen on\n$port\n\n"
+}
+
 
 # check package manager
 echo -e "\n\n Check package manager... \n\n"
@@ -44,7 +54,10 @@ if ! [ -x "$(command -v mvn)" ]; then
 	echo -e "\n\n Maven installation is successful! \n\n"
 else
 	# update Maven conf by server_location
+	echo -e "\n\n Update maven config... \n\n" 
 	
+
+	echo -e "\n\n Update maven config is successful... \n\n" 
 fi
 
 
@@ -86,15 +99,17 @@ mvn package spring-boot:repackage
 echo -e "\n\n Build project is finished! \n\n"
 
 # start project
-if [[ -n $(pgrep -f java) ]]; then
-	pid=$(pgrep -f java | head -n 1)
+if [[ -n $(pgrep -f $process_name) ]]; then
+	pid=$(pgrep -f $process_name | head -n 1)
 	echo -e "\n\n To kill pid $pid... \n"
 	sudo kill -9 $pid
 	echo -e "\n\n Kill pid $pid is successful! \n\n"
 fi
 echo -e "\n\n Start project... \n\n"
-java -jar ./target/$target_name-1.0-SNAPSHOT.jar &
-pid=$(pgrep -f java | head -n 1)
-port=$(sudo lsof -i -P | grep -i LISTEN | grep $pid)
-echo -e "\n\nYour application run at $server_ip and listen on\n$port\n\n"
+
+java -jar ./target/$target_name-1.0-SNAPSHOT.jar & 
+sleep $proj_start_time
+showProcess $process_name
+
+
 
