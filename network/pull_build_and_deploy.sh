@@ -17,7 +17,7 @@ if ! [ -x "$(command -v mvn)" ]; then
 fi
 
 
-if ! [[ -n $(ls $proj_name) ]]
+if ! [[ -n $(ls $proj_name) ]]; then
 	git clone https://github.com/$github_user/$proj_name.git
 fi
 
@@ -25,7 +25,7 @@ cd $proj_name
 git pull
 mvn package spring-boot:repackage
 
-if [[ -n $(pgrep -f java) ]]
+if [[ -n $(pgrep -f java) ]]; then
 	pid=$(pgrep -f java | head -n 1)
 	echo -e "\n\nkill pid $pid\n\n"
 	sudo kill -9 $pid
