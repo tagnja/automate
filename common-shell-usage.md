@@ -11,10 +11,12 @@
 - Condition Branch
 - Loop
 - Variable
+- Arrays
 - Function
 - Package Management
 - Process
 - Network
+- SSH
 
 
 
@@ -151,7 +153,7 @@ END
 `echo `, `>>`
 
 ```shell
-echo "
+sudo echo "
 export JAVA_HOME=$JAVA_HOME
 export PATH=\$PATH:\$JAVA_HOME/bin
 ">>~/.profile ;
@@ -273,6 +275,30 @@ Using variable
 
 ```shell
 $install_path
+```
+
+### Arrays
+
+Definition array
+
+```shell
+declare -a arr=("element1" "element2" "element3")
+echo ${a[0]}
+arraylength=${#arr[@]}
+```
+
+For each
+
+```shell
+for i in "${arr[@]}"; do
+   echo "$i"
+done
+```
+
+```shell
+for (( i=1; i<${arraylength}+1; i++ )); do
+  echo $i " / " ${arraylength} " : " ${arr[$i-1]}
+done
 ```
 
 
@@ -398,5 +424,51 @@ Get server host IP address
 
 ```shell
 server_ip=$(curl http://ifconfig.me/ip)
+```
+
+
+
+### SSH
+
+Create the RSA Key Pair
+
+```shell
+$ ssh-keygen -t rsa
+```
+
+Store the Keys and Passphrase
+
+```shell
+Enter file in which to save the key (/home/demo/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+```
+
+```shell
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/demo/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/demo/.ssh/id_rsa.
+Your public key has been saved in /home/demo/.ssh/id_rsa.pub.
+The key fingerprint is:
+4a:dd:0a:c6:35:4e:3f:ed:27:38:8c:74:44:4d:93:67 demo@a
+The key's randomart image is:
++--[ RSA 2048]----+
+|          .oo.   |
+|         .  o.E  |
+|        + .  o   |
+|     . = = .     |
+|      = S = .    |
+|     o + = +     |
+|      . o + o .  |
+|           . o   |
+|                 |
++-----------------+
+```
+
+Copy the Public Key
+
+```shell
+ssh-copy-id demo@198.51.100.0
 ```
 
