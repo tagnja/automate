@@ -5,6 +5,7 @@ proj_name=hot-crawler
 target_name=hotcrawler
 package_manager=apt-get
 server_location=inland
+server_ip=$(curl http://ifconfig.me/ip)
 
 # check package manager
 echo -e "\n\n Check package manager... \n\n"
@@ -41,9 +42,11 @@ if ! [ -x "$(command -v mvn)" ]; then
 	echo -e "\n\n Install maven... \n\n"
 	sudo $package_manager install maven -y
 	echo -e "\n\n Maven installation is successful! \n\n"
+else
+	# update Maven conf by server_location
+	
 fi
 
-# update Maven conf by server_location
 
 
 
@@ -91,3 +94,7 @@ if [[ -n $(pgrep -f java) ]]; then
 fi
 echo -e "\n\n Start project... \n\n"
 java -jar ./target/$target_name-1.0-SNAPSHOT.jar &
+pid=$(pgrep -f java | head -n 1)
+port=$(sudo lsof -i -P | grep -i LISTEN | grep $pid)
+echo -e "\n\nYour application run at $server_ip and listen on\n$port\n\n"
+
