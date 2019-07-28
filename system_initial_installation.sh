@@ -132,8 +132,15 @@ done
 
 
 # config vim
+vim_config_path=~/.vimrc
 if [ -x "$(command -v vim)" ]; then
-echo "
+	if ! [ -f $vim_config_path ]; then
+		touch $vim_config_path
+	fi
+	if [ -n "$(grep "set number" $vim_config_path)" ]; then
+		echo -e "\n\n Vim is already config ! \n\n"
+	else
+		echo "
 :set number
 
 set tabstop=4       
@@ -147,5 +154,9 @@ set cindent
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
-"| sudo tee ~/.vimrc
+"| sudo tee $vim_config_path
+		echo -e "\n\n Set vim config successfully ! \n\n"
+	fi
+else
+	echo -e "\n\n Vim is not installed ! \n\n";
 fi
