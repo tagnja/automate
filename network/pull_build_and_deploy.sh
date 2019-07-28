@@ -33,7 +33,7 @@ echo -e "\n\nBuild project is successful!\n\n"
 
 if [[ -n $(pgrep -f java) ]]; then
 	pid=$(pgrep -f java | head -n 1)
-	echo -e "\n\nTO kill pid $pid...\n\n"
+	echo -e "\n\nTo kill pid $pid...\n\n"
 	sudo kill -9 $pid
 	echo -e "\n\nKill pid $pid is successful!\n\n"
 fi
