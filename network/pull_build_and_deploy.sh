@@ -9,7 +9,7 @@ if [ -x "$(command -v apt-get)" ]; then
 else
 	package_manager=yum
 fi
-echo -e "\n\n package manager is $package_manager.\n\n"
+echo -e "\n\nPackage manager is $package_manager.\n\n"
 
 if ! [ -x "$(command -v git)" ]; then
 	echo -e "\n\nInstall git...\n\n"
