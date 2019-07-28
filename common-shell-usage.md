@@ -214,6 +214,22 @@ echo -e "Hello\nWorld\n\n"
 
 ### Condition Branch
 
+Test for null or empty variables in a Bash shell script. You need to pass the -z or -n option. 
+
+The -n returns TRUE if the length of STRING is nonzero. For example:
+
+`if [ -n "$var" ] # if not null`, 
+
+`if [ -n "$(echo "hello")" ] # if not null` 
+
+`if [[ ${my_str} ]] # if not null`
+
+`if [ -z "$my_var" ] # if null`,  
+
+`if [ ! -n "$var" ]`
+
+`if [ ! -z "$my_var" ]`
+
 If x equals y
 
 ```shell
