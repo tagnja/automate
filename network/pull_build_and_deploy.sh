@@ -7,7 +7,7 @@ package_manager=apt-get
 server_location=inland
 server_ip=$(curl http://ifconfig.me/ip)
 proj_start_time=20
-process_name=java
+process_name=hotcrawler
 
 function showProcess
 {
