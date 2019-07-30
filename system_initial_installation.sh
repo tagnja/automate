@@ -71,6 +71,19 @@ if ! [ -x "$(command -v sudo)" ]; then
     echo -e "\n\n install sudo is successful ! \n\n"
 fi
 
+
+# update timezone to Asia/Shanghai
+
+if [ -z $(date +"%Z %z" | grep +08) ]; then
+	echo -e "\n\n Set timezone to +08... \n\n"
+	sudo cp /etc/localtime /etc/localtime.bak
+	sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+	echo -e "\n\n Set timezone to +08 is successful ! \n\n"
+else
+	echo -e "\n\n Timezone is already +08 ! \n\n"
+fi
+
+
 # apt update
 echo -e "\n\n apt update... \n\n"
 sudo $package_manager update && $package_manager upgrade -y && $package_manager autoremove && $package_manager autoclean
