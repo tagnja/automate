@@ -78,7 +78,7 @@ if [ -z $(date +"%Z %z" | grep +08) ]; then
 	echo -e "\n\n Set timezone to +08... \n\n"
 	sudo cp /etc/localtime /etc/localtime.bak
 	sudo ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-	echo -e "\n\n Set timezone to +08 is successful ! \n\n"
+	echo -e "\n\n Set timezone to +08 is successful ! \n Now the datetime is $(date). \n\n"
 else
 	echo -e "\n\n Timezone is already +08 ! \n\n"
 fi
