@@ -185,13 +185,21 @@ sed -i "/\b\(JAVA_HOME\)\b/d" ~/.profile
 
 ### Input
 
-Read from terminal
+Read from terminal with multiple lines tip 
 
 ```shell
 read -p "
 Selecting your want to install package:
 0. install All 1. install JDK 2. install MySQL 3.intsall Tomcat 4.intsall Redis 5. nginx 
 " install_code
+```
+
+Read variable
+
+```shell
+echo -n "Enter your name and press [ENTER]: " 
+read var_name
+echo "Your name is: $var_name"
 ```
 
 
