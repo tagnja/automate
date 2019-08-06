@@ -115,6 +115,8 @@ fi
 
 ### Text Line
 
+**Find**
+
 find String from a file
 
 ```shell
@@ -123,6 +125,15 @@ $ grep 'word' file1 file2 file3
 $ grep 'string1 string2'  filename
 $ cat otherfile | grep 'something'
 ```
+
+Find a line start and end with 
+
+```shell
+$ grep '^start_and_end_with_me$' <file>
+$ grep '^start_with_me' <file>
+```
+
+**Rewrite/Append**
 
 Rewrite text of a file
 
@@ -169,6 +180,8 @@ deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
 "| sudo tee -a /etc/apt/sources.list  # add -a for append (>>) ;
 ```
 
+**Replace**
+
 Replace String of text lines from a file
 
 ```shell
@@ -179,6 +192,12 @@ Remove text lines contain a string from a file
 
 ```shell
 sed -i "/\b\(JAVA_HOME\)\b/d" ~/.profile
+```
+
+Replace all line starting with string
+
+```shell
+sed -i 's/^target_string_start_with*/replace_string/' <filename>
 ```
 
 
