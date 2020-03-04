@@ -133,6 +133,15 @@ $ grep '^start_and_end_with_me$' <file>
 $ grep '^start_with_me' <file>
 ```
 
+Find by Regular Expression
+
+```shell
+$ grep -E <your_expression>
+$ grep -E "^java.+\.tar\.gz"
+```
+
+
+
 **Rewrite/Append**
 
 Rewrite text of a file
@@ -221,6 +230,21 @@ read var_name
 echo "Your name is: $var_name"
 ```
 
+Read array from output of a command
+
+```shell
+mapfile -t my_array < <( my_command )
+```
+
+```shell
+my_array=()
+while IFS= read -r line; do
+    my_array+=( "$line" )
+done < <( my_command )
+```
+
+
+
 
 
 ### Output
@@ -235,6 +259,12 @@ Output newline
 
 ```shell
 echo -e "Hello\nWorld\n\n"
+```
+
+Output line number
+
+```shell
+echo "hello" | cat -b
 ```
 
 
@@ -270,6 +300,18 @@ If not null
 if [[ -n $(find /tools -name redis-server) ]]; then 
 fi
 ```
+
+if number compare
+
+```shell
+if [ "$num" -gt 1 ] // greater than
+if [ "$num" -ge 1 ] // greater than or equals
+if [ "$num" -ge "$min" ] && [ "$num" -le "$max"] // min <= num <= max
+```
+
+
+
+
 
 Switch Case 
 
@@ -348,6 +390,15 @@ declare -a arr=("element1" "element2" "element3")
 echo ${a[0]}
 arraylength=${#arr[@]}
 ```
+
+array length
+
+```shell
+len=${#ArrayName[@]}
+echo "$len"
+```
+
+
 
 For each
 
